@@ -26,6 +26,8 @@ namespace EchoBot.Bot
         /// <value>The bot media stream.</value>
         public BotMediaStream BotMediaStream { get; private set; }
 
+        private readonly ILogger _appLogger;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CallHandler" /> class.
         /// </summary>
@@ -39,6 +41,7 @@ namespace EchoBot.Bot
         )
             : base(TimeSpan.FromMinutes(10), statefulCall?.GraphLogger)
         {
+            _appLogger = logger;
             this.Call = statefulCall;
             this.Call.OnUpdated += this.CallOnUpdated;
             this.Call.Participants.OnUpdated += this.ParticipantsOnUpdated;
@@ -69,11 +72,20 @@ namespace EchoBot.Bot
         /// <param name="e">The event args containing call changes.</param>
         private async void CallOnUpdated(ICall sender, ResourceEventArgs<Call> e)
         {
-            GraphLogger.Info($"Call status updated to {e.NewResource.State} - {e.NewResource.ResultInfo?.Message}");
+            var state = e.NewResource.State;
+            var message = e.NewResource.ResultInfo?.Message ?? "";
+            GraphLogger.Info($"Call status updated to {state} - {message}");
+            _appLogger.LogInformation("Call state: {State} - {Message}", state, message);
 
             if (e.OldResource.State != e.NewResource.State && e.NewResource.State == CallState.Established)
             {
                 GraphLogger.Info("Call ESTABLISHED - media session active. Speak in the meeting; you should hear yourself (echo).");
+                _appLogger.LogInformation("Call ESTABLISHED - media session active. You should see the bot in the meeting.");
+            }
+
+            if (state == CallState.Terminated && !string.IsNullOrEmpty(message))
+            {
+                _appLogger.LogWarning("Call ended: State={State}, Message={Message}. If call failed during media setup, check media port 8445 binding and certificate on this VM.", state, message);
             }
 
             if ((e.OldResource.State == CallState.Established) && (e.NewResource.State == CallState.Terminated))
