@@ -1,4 +1,4 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : EchoBot.Controllers
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
@@ -60,6 +60,7 @@ namespace EchoBot.Controllers
         [Route(HttpRouteConstants.OnNotificationRequestRoute)]
         public async Task<HttpResponseMessage> OnNotificationRequestAsync()
         {
+            _logger.LogInformation("Notification received from Graph (callback hit)");
             var httpRequestMessage = HttpHelpers.ToHttpRequestMessage(this.Request);
 
             // Pass the incoming notification to the sdk. The sdk takes care of what to do with it.

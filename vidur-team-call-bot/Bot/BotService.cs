@@ -1,4 +1,4 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : EchoBot.Bot
 // Author           : JasonTheDeveloper
 // Created          : 09-07-2020
@@ -134,7 +134,7 @@ namespace EchoBot.Bot
             };
 
             var notificationUrl = new Uri($"https://{_settings.ServiceDnsName}:{_settings.BotInstanceExternalPort}/{HttpRouteConstants.CallSignalingRoutePrefix}/{HttpRouteConstants.OnNotificationRequestRoute}");
-            _logger.LogInformation($"NotificationUrl: ${notificationUrl}");
+            _logger.LogInformation("NotificationUrl: {NotificationUrl}", notificationUrl.ToString());
 
             builder.SetAuthenticationProvider(authProvider);
             builder.SetNotificationUrl(notificationUrl);
