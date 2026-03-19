@@ -1,12 +1,21 @@
 {
-  "name": "media-adapter-node-bridge",
+  "name": "node-downstream",
   "version": "0.1.0",
-  "description": "WebSocket bridge that exchanges PCM with the Media Adapter",
-  "main": "index.js",
+  "private": true,
+  "description": "Node workspace: app and packages",
   "scripts": {
-    "start": "node index.js"
+    "build": "tsc -b",
+    "start": "npm start -w @node-downstream/app",
+    "test:client": "npm run test:client -w @node-downstream/app",
+    "test:websocket": "npm run test -w @node-downstream/websocket",
+    "test:audio": "npm run test -w @node-downstream/audio"
   },
-  "dependencies": {
-    "ws": "^8.16.0"
+  "workspaces": [
+    "app",
+    "packages/websocket",
+    "packages/audio"
+  ],
+  "devDependencies": {
+    "typescript": "^5.3.0"
   }
 }

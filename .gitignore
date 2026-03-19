@@ -11,8 +11,9 @@
 *.suo
 *.userprefs
 
-# NuGet
+# NuGet (exclude node-downstream workspace packages)
 packages/
+!node-downstream/packages/
 *.nupkg
 *.snupkg
 project.lock.json
@@ -43,6 +44,8 @@ join-body.json
 
 # Node (if node-downstream is present)
 node_modules/
+dist/
+*.tsbuildinfo
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

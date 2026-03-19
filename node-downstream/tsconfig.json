@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/websocket" },
+    { "path": "packages/audio" },
+    { "path": "app" }
+  ]
+}
