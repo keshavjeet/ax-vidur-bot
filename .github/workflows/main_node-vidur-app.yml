@@ -7,6 +7,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "node-downstream/**"
+      - ".github/workflows/main_node-vidur-app.yml"
   workflow_dispatch:
 
 jobs:
@@ -15,25 +18,39 @@ jobs:
     permissions:
       contents: read #This is required for actions/checkout
 
+    defaults:
+      run:
+        working-directory: node-downstream
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Node.js version
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '24.x'
+          node-version: "20.x"
+          cache: "npm"
+          cache-dependency-path: "node-downstream/package-lock.json"
 
-      - name: npm install, build, and test
+      - name: Install Azure runtime workspaces only
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm ci \
+            --workspace @node-downstream/util-websocket \
+            --workspace @node-downstream/app
+
+      - name: Build required workspaces
+        run: |
+          npm run build -w @node-downstream/util-websocket
+          npm run build -w @node-downstream/app
+
+      - name: Test required workspaces
+        run: npm run test -w @node-downstream/util-websocket --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: node-downstream
 
   deploy:
     runs-on: ubuntu-latest
@@ -61,5 +78,5 @@ jobs:
         with:
           app-name: 'node-vidur-app'
           slot-name: 'Production'
-          package: .
+          package: node-downstream
           
