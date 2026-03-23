@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace EchoBot
 {
@@ -59,6 +59,26 @@ namespace EchoBot
         /// for converting the audio to a Bot voice
         /// </summary>
         public bool UseSpeechService { get; set; }
+
+        /// <summary>
+        /// Selects audio bridge mode: echo, speech, or downstream.
+        /// </summary>
+        public string AudioBridgeMode { get; set; }
+
+        /// <summary>
+        /// Downstream websocket URL used when AudioBridgeMode is downstream.
+        /// </summary>
+        public string DownstreamWebSocketUrl { get; set; }
+
+        /// <summary>
+        /// Timeout in milliseconds when connecting to downstream websocket.
+        /// </summary>
+        public int DownstreamConnectTimeoutMs { get; set; } = 5000;
+
+        /// <summary>
+        /// Reconnect to downstream websocket after transient disconnects.
+        /// </summary>
+        public bool DownstreamReconnectEnabled { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the Speech Service key
