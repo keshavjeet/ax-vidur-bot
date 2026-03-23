@@ -1,0 +1,19 @@
+{
+  "name": "@node-downstream/util-audio-io",
+  "version": "0.1.0",
+  "description": "High-level audio IO runtime (capture + playback)",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@node-downstream/util-audio-playback": "file:../util-audio-playback",
+    "@node-downstream/util-audio-filter": "file:../util-audio-filter",
+    "@node-downstream/util-mic": "file:../util-mic"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}

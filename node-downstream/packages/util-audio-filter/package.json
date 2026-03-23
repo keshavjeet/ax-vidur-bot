@@ -1,0 +1,19 @@
+{
+  "name": "@node-downstream/util-audio-filter",
+  "version": "0.1.0",
+  "description": "Silero VAD: stream only during speech; optional RNNoise",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node dist/tests/voice-gate.test.js"
+  },
+  "dependencies": {
+    "@echogarden/rnnoise-wasm": "^0.2.0",
+    "avr-vad": "^1.0.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}

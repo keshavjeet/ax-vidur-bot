@@ -1,18 +1,19 @@
 {
-  "name": "@node-downstream/audio",
+  "name": "@node-downstream/util-websocket",
   "version": "0.1.0",
-  "description": "Audio playback (PCM speaker)",
+  "description": "WebSocket server with session manager",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "node dist/tests/speaker.test.js"
+    "test": "node dist/tests/server.test.js"
   },
   "dependencies": {
-    "speaker": "^0.5.4"
+    "ws": "^8.16.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
+    "@types/ws": "^8.5.10",
     "typescript": "^5.3.0"
   }
 }

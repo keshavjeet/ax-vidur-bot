@@ -16,6 +16,9 @@ Following are the different components that need to be set up:
     - You need to run a powershell command to approve the bot
 6.  Azure VM
     - VM deployed in **same Azure region as Teams workloads**
+7. node-downstream
+    - Install 
+
 
 
 ## 6. Azure VM Infrastructure

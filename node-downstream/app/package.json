@@ -5,12 +5,11 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "test:client": "node dist/test-client.js"
+    "start": "node -r dotenv/config dist/index.js dotenv_config_path=../.env"
   },
   "dependencies": {
-    "@node-downstream/audio": "file:../packages/audio",
-    "@node-downstream/websocket": "file:../packages/websocket",
+    "@node-downstream/util-websocket": "file:../packages/util-websocket",
+    "dotenv": "^17.2.3",
     "ws": "^8.16.0"
   },
   "devDependencies": {

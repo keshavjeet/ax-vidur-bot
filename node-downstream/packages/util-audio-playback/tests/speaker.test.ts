@@ -1,6 +1,6 @@
 /**
  * Audio package tests: createSpeaker returns a writable stream.
- * Run after build: node dist/packages/audio/tests/speaker.test.js
+ * Run after build: node dist/tests/speaker.test.js
  */
 
 import { createSpeaker, type AudioFormat } from '../src';

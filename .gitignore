@@ -12,8 +12,6 @@
 *.userprefs
 
 # NuGet (exclude node-downstream workspace packages)
-packages/
-!node-downstream/packages/
 *.nupkg
 *.snupkg
 project.lock.json

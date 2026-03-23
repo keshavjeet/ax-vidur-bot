@@ -6,14 +6,18 @@
   "scripts": {
     "build": "tsc -b",
     "start": "npm start -w @node-downstream/app",
-    "test:client": "npm run test:client -w @node-downstream/app",
-    "test:websocket": "npm run test -w @node-downstream/websocket",
-    "test:audio": "npm run test -w @node-downstream/audio"
+    "test:client": "npm run start -w @node-downstream/demo-cli-app",
+    "test:websocket": "npm run test -w @node-downstream/util-websocket",
+    "test:audio": "npm run test -w @node-downstream/util-audio-playback"
   },
   "workspaces": [
     "app",
-    "packages/websocket",
-    "packages/audio"
+    "demo-cli-app",
+    "packages/util-websocket",
+    "packages/util-audio-io",
+    "packages/util-audio-playback",
+    "packages/util-audio-filter",
+    "packages/util-mic"
   ],
   "devDependencies": {
     "typescript": "^5.3.0"

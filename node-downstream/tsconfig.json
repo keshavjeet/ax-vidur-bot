@@ -1,8 +1,12 @@
 {
   "files": [],
   "references": [
-    { "path": "packages/websocket" },
-    { "path": "packages/audio" },
-    { "path": "app" }
+    { "path": "packages/util-websocket" },
+    { "path": "packages/util-audio-io" },
+    { "path": "packages/util-audio-playback" },
+    { "path": "packages/util-audio-filter" },
+    { "path": "packages/util-mic" },
+    { "path": "app" },
+    { "path": "demo-cli-app" }
   ]
 }
