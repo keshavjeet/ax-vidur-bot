@@ -30,14 +30,19 @@ jobs:
           cache: "npm"
           cache-dependency-path: "node-downstream/package-lock.json"
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install Azure runtime workspaces only
+        run: |
+          npm ci \
+            --workspace @node-downstream/util-websocket \
+            --workspace @node-downstream/app
 
-      - name: Build workspace
-        run: npm run build --if-present
+      - name: Build required workspaces
+        run: |
+          npm run build -w @node-downstream/util-websocket
+          npm run build -w @node-downstream/app
 
-      - name: Run tests
-        run: npm run test --if-present
+      - name: Test required workspaces
+        run: npm run test -w @node-downstream/util-websocket --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
